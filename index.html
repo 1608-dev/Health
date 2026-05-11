@@ -59,7 +59,7 @@
 
     .stats-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: #c8d6ea;
       border-bottom: 1px solid #c8d6ea;
@@ -98,7 +98,7 @@
     }
 
     .section {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
@@ -108,13 +108,52 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #5a7090;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       font-weight: 600;
     }
 
+    /* REFERRAL FLOW - slightly bigger */
+    .referral-flow {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .flow-step {
+      background: #fff;
+      border: 1px solid #dce8f5;
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a2b4a;
+      white-space: nowrap;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .flow-step span {
+      display: block;
+      font-size: 0.72rem;
+      color: #5a7090;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+
+    .flow-arrow {
+      color: #1A4BB5;
+      font-size: 1.2rem;
+      padding: 0 8px;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    /* CARDS - all 5 in one row */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
       margin-bottom: 2rem;
     }
@@ -154,7 +193,7 @@
     }
 
     .card h3 {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: #1a2b4a;
       margin-bottom: 0.4rem;
@@ -162,87 +201,9 @@
     }
 
     .card p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #5a7090;
       line-height: 1.6;
-      margin-bottom: 0.75rem;
-    }
-
-    .card a {
-      font-size: 0.78rem;
-      color: #1A4BB5;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: gap 0.2s;
-    }
-
-    .card a:hover { gap: 8px; }
-
-    .referral-flow {
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .flow-step {
-      background: #fff;
-      border: 1px solid #dce8f5;
-      border-radius: 8px;
-      padding: 0.65rem 0.85rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #1a2b4a;
-      white-space: nowrap;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .flow-step span {
-      display: block;
-      font-size: 0.65rem;
-      color: #5a7090;
-      font-weight: 400;
-      margin-top: 2px;
-    }
-
-    .flow-arrow {
-      color: #1A4BB5;
-      font-size: 1rem;
-      padding: 0 6px;
-      flex-shrink: 0;
-    }
-
-    .info-banner {
-      background: #e8f0fc;
-      border-left: 4px solid #1A4BB5;
-      border-radius: 0 8px 8px 0;
-      padding: 1rem 1.25rem;
-      display: flex;
-      gap: 0.85rem;
-      align-items: flex-start;
-    }
-
-    .info-banner svg {
-      width: 20px;
-      height: 20px;
-      stroke: #1A4BB5;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .info-banner p {
-      font-size: 0.85rem;
-      color: #1a3a7a;
-      line-height: 1.7;
     }
 
     footer {
@@ -318,7 +279,7 @@
       <div class="flow-step">Referral <span>Hospitals</span></div>
     </div>
 
-    <!-- FEATURE CARDS -->
+    <!-- FEATURE CARDS - all 5 in one row -->
     <div class="section-title">Explore access layers</div>
     <div class="cards">
 
@@ -328,7 +289,6 @@
         </div>
         <h3>Primary healthcare access</h3>
         <p>Community-level access to health posts and health centres across Rwanda.</p>
-        <a href="https://gh.space.gov.rw/portal/apps/dashboards/97ea5d54700a42c8b16e8645845474bc" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -337,7 +297,6 @@
         </div>
         <h3>Health centre → District hospital</h3>
         <p>Travel time and distance for referrals from health centres to district hospitals.</p>
-        <a href="https://gh.space.gov.rw/portal/apps/dashboards/626b6461ae4948788b2c6b9b9231ecec" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -346,7 +305,6 @@
         </div>
         <h3>District → Provincial access</h3>
         <p>Connectivity and access mapping between district and provincial hospitals.</p>
-        <a href="https://gh.space.gov.rw/portal/apps/dashboards/b874415d6ebb4bf4b428189d5fef85be" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -355,24 +313,16 @@
         </div>
         <h3>Provincial → Referral access</h3>
         <p>Pathways from provincial hospitals to national and specialist referral centres.</p>
-        <a href="https://gh.space.gov.rw/portal/apps/dashboards/bd50d196e7bb4e4ea474fff04c44303e" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3>Referral access</h3>
+        <h3>Sector to Referral access</h3>
         <p>Top-tier specialist and tertiary care access coverage and geographic reach.</p>
-        <a href="https://gh.space.gov.rw/portal/apps/dashboards/7bcfb3bfcd114ef487fc3cb0c86204ad" target="_parent">View dashboard →</a>
       </div>
 
-    </div>
-
-    <!-- INFO BANNER -->
-    <div class="info-banner">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p>Click <strong>View dashboard</strong> on any card above to explore that level of the health referral system. Maps display travel time, distance, and population catchment data to support evidence-based health planning.</p>
     </div>
 
   </div>
