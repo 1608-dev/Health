@@ -125,7 +125,6 @@
       border-radius: 10px;
       padding: 1.25rem;
       transition: box-shadow 0.2s, transform 0.2s;
-      cursor: default;
     }
 
     .card:hover {
@@ -166,47 +165,25 @@
       font-size: 0.8rem;
       color: #5a7090;
       line-height: 1.6;
+      margin-bottom: 0.75rem;
     }
 
-    .card .arrow {
-      margin-top: 0.75rem;
+    .card a {
       font-size: 0.78rem;
       color: #1A4BB5;
-      font-weight: 500;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
     }
 
-    .info-banner {
-      background: #e8f0fc;
-      border-left: 4px solid #1A4BB5;
-      border-radius: 0 8px 8px 0;
-      padding: 1rem 1.25rem;
-      display: flex;
-      gap: 0.85rem;
-      align-items: flex-start;
-    }
-
-    .info-banner svg {
-      width: 20px;
-      height: 20px;
-      stroke: #1A4BB5;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .info-banner p {
-      font-size: 0.85rem;
-      color: #1a3a7a;
-      line-height: 1.7;
-    }
+    .card a:hover { gap: 8px; }
 
     .referral-flow {
       display: flex;
       align-items: center;
-      gap: 0;
       overflow-x: auto;
       padding-bottom: 0.5rem;
       margin-bottom: 2rem;
@@ -240,6 +217,34 @@
       flex-shrink: 0;
     }
 
+    .info-banner {
+      background: #e8f0fc;
+      border-left: 4px solid #1A4BB5;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .info-banner svg {
+      width: 20px;
+      height: 20px;
+      stroke: #1A4BB5;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-banner p {
+      font-size: 0.85rem;
+      color: #1a3a7a;
+      line-height: 1.7;
+    }
+
     footer {
       text-align: center;
       padding: 1.25rem;
@@ -247,6 +252,7 @@
       color: #8aa0bc;
       border-top: 1px solid #dce8f5;
       background: #fff;
+      margin-top: 2rem;
     }
   </style>
 </head>
@@ -261,9 +267,7 @@
       </svg>
     </div>
     <h1>Health Services Access Mapping Application</h1>
-    <p>
-      A geospatial platform for analysing and visualising healthcare access across all levels of Rwanda's referral system — from community health posts to national referral hospitals.
-    </p>
+    <p>A geospatial platform for analysing and visualising healthcare access across all levels of Rwanda's referral system — from community health posts to national referral hospitals.</p>
   </div>
 
   <!-- STATS BAR -->
@@ -324,7 +328,7 @@
         </div>
         <h3>Primary healthcare access</h3>
         <p>Community-level access to health posts and health centres across Rwanda.</p>
-        <div class="arrow">View map →</div>
+        <a href="https://gh.space.gov.rw/portal/apps/dashboards/97ea5d54700a42c8b16e8645845474bc" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -333,7 +337,7 @@
         </div>
         <h3>Health centre → District hospital</h3>
         <p>Travel time and distance for referrals from health centres to district hospitals.</p>
-        <div class="arrow">View map →</div>
+        <a href="https://gh.space.gov.rw/portal/apps/dashboards/626b6461ae4948788b2c6b9b9231ecec" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -342,7 +346,7 @@
         </div>
         <h3>District → Provincial access</h3>
         <p>Connectivity and access mapping between district and provincial hospitals.</p>
-        <div class="arrow">View map →</div>
+        <a href="https://gh.space.gov.rw/portal/apps/dashboards/b874415d6ebb4bf4b428189d5fef85be" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -351,7 +355,7 @@
         </div>
         <h3>Provincial → Referral access</h3>
         <p>Pathways from provincial hospitals to national and specialist referral centres.</p>
-        <div class="arrow">View map →</div>
+        <a href="https://gh.space.gov.rw/portal/apps/dashboards/bd50d196e7bb4e4ea474fff04c44303e" target="_parent">View dashboard →</a>
       </div>
 
       <div class="card">
@@ -360,7 +364,7 @@
         </div>
         <h3>Referral access</h3>
         <p>Top-tier specialist and tertiary care access coverage and geographic reach.</p>
-        <div class="arrow">View map →</div>
+        <a href="https://gh.space.gov.rw/portal/apps/dashboards/7bcfb3bfcd114ef487fc3cb0c86204ad" target="_parent">View dashboard →</a>
       </div>
 
     </div>
@@ -368,9 +372,7 @@
     <!-- INFO BANNER -->
     <div class="info-banner">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p>
-        Use the navigation tabs above to explore each level of the health referral system. Maps display travel time, distance, and population catchment data to support evidence-based health planning and resource allocation.
-      </p>
+      <p>Click <strong>View dashboard</strong> on any card above to explore that level of the health referral system. Maps display travel time, distance, and population catchment data to support evidence-based health planning.</p>
     </div>
 
   </div>
