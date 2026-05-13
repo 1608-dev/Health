@@ -13,7 +13,6 @@
       color: #1a2b4a;
     }
 
-    /* ── HERO ── */
     .hero {
       background: linear-gradient(150deg, #0d2e8a 0%, #1A4BB5 50%, #1a6dd4 100%);
       color: #fff;
@@ -80,14 +79,12 @@
     }
 
     .hero-divider {
-      width: 48px;
-      height: 3px;
+      width: 48px; height: 3px;
       background: rgba(255,255,255,0.35);
       border-radius: 2px;
       margin: 0 auto;
     }
 
-    /* ── STATS ── */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -105,7 +102,6 @@
 
     .stat:last-child { border-right: none; }
     .stat:hover { background: #f7faff; }
-
     .stat-icon { margin-bottom: 0.5rem; }
 
     .stat-icon svg {
@@ -131,7 +127,6 @@
       font-weight: 600;
     }
 
-    /* ── MAIN CONTENT ── */
     .content {
       max-width: 1100px;
       margin: 0 auto;
@@ -154,7 +149,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ── REFERRAL FLOW ── */
     .flow-wrap {
       background: #fff;
       border: 1px solid #e0eaf5;
@@ -168,7 +162,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: nowrap;
       overflow-x: auto;
     }
 
@@ -208,7 +201,6 @@
       stroke-linecap: round; stroke-linejoin: round;
     }
 
-    /* ── CARDS ── */
     .cards {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -224,8 +216,6 @@
       flex-direction: column;
       transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
       cursor: pointer;
-      text-decoration: none;
-      color: inherit;
       position: relative;
       overflow: hidden;
     }
@@ -299,6 +289,7 @@
       font-weight: 700;
       color: #1A4BB5;
       margin-top: auto;
+      pointer-events: none;
     }
 
     .card-cta svg {
@@ -311,7 +302,6 @@
 
     .card:hover .card-cta svg { transform: translateX(3px); }
 
-    /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 1.25rem;
@@ -326,7 +316,6 @@
 </head>
 <body>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-badge">
       <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -337,7 +326,6 @@
     <div class="hero-divider"></div>
   </div>
 
-  <!-- STATS - 3 columns (removed max referral time) -->
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-icon">
@@ -362,10 +350,8 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="content">
 
-    <!-- REFERRAL SYSTEM -->
     <div class="section-label">How it works</div>
     <div class="section-heading">Rwanda's Health Referral System</div>
 
@@ -406,13 +392,12 @@
       </div>
     </div>
 
-    <!-- CARDS -->
     <div class="section-label">Explore the dashboards</div>
     <div class="section-heading">Select an Access Level to View</div>
 
     <div class="cards">
 
-      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/97ea5d54700a42c8b16e8645845474bc" target="_parent">
+      <div class="card" onclick="openDashboard('https://gh.space.gov.rw/portal/apps/dashboards/97ea5d54700a42c8b16e8645845474bc')">
         <div class="card-num">Level 01</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -423,9 +408,9 @@
           Open Dashboard
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </a>
+      </div>
 
-      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/626b6461ae4948788b2c6b9b9231ecec" target="_parent">
+      <div class="card" onclick="openDashboard('https://gh.space.gov.rw/portal/apps/dashboards/626b6461ae4948788b2c6b9b9231ecec')">
         <div class="card-num">Level 02</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8v4h8V3z"/><path d="M12 12v4m-2-2h4"/></svg>
@@ -436,9 +421,9 @@
           Open Dashboard
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </a>
+      </div>
 
-      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/b874415d6ebb4bf4b428189d5fef85be" target="_parent">
+      <div class="card" onclick="openDashboard('https://gh.space.gov.rw/portal/apps/dashboards/b874415d6ebb4bf4b428189d5fef85be')">
         <div class="card-num">Level 03</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -449,9 +434,9 @@
           Open Dashboard
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </a>
+      </div>
 
-      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/bd50d196e7bb4e4ea474fff04c44303e" target="_parent">
+      <div class="card" onclick="openDashboard('https://gh.space.gov.rw/portal/apps/dashboards/bd50d196e7bb4e4ea474fff04c44303e')">
         <div class="card-num">Level 04</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
@@ -462,9 +447,9 @@
           Open Dashboard
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </a>
+      </div>
 
-      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/7bcfb3bfcd114ef487fc3cb0c86204ad" target="_parent">
+      <div class="card" onclick="openDashboard('https://gh.space.gov.rw/portal/apps/dashboards/7bcfb3bfcd114ef487fc3cb0c86204ad')">
         <div class="card-num">Level 05</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -475,15 +460,25 @@
           Open Dashboard
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </a>
+      </div>
 
     </div>
-
   </div>
 
   <footer>
     <strong>Health Services Access Mapping Application</strong> &nbsp;|&nbsp; Rwanda
   </footer>
+
+  <script>
+    function openDashboard(url) {
+      // Try every possible way to navigate out of the iframe
+      try { window.top.location.href = url; return; } catch(e) {}
+      try { window.parent.location.href = url; return; } catch(e) {}
+      try { window.top.open(url, '_self'); return; } catch(e) {}
+      // Final fallback: open in new tab
+      window.open(url, '_blank');
+    }
+  </script>
 
 </body>
 </html>
