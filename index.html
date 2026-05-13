@@ -3,332 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Health Services Access Mapping — Home</title>
+  <title>Health Services Access Mapping Application</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
+      background: #f4f7fb;
       color: #1a2b4a;
-      min-height: 100vh;
     }
 
+    /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #1A4BB5 0%, #0d3080 100%);
+      background: linear-gradient(150deg, #0d2e8a 0%, #1A4BB5 50%, #1a6dd4 100%);
       color: #fff;
       text-align: center;
-      padding: 3.5rem 2rem 2.5rem;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(255,255,255,0.15);
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: rgba(255,255,255,0.04);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.25rem;
     }
 
-    .hero-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 260px; height: 260px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-badge svg {
+      width: 13px; height: 13px;
+      stroke: rgba(255,255,255,0.9);
+      fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
     }
 
     .hero h1 {
-      font-size: 1.75rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
     }
 
     .hero p {
       font-size: 1rem;
-      color: rgba(255,255,255,0.85);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
     }
 
+    .hero-divider {
+      width: 48px;
+      height: 3px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* ── STATS ── */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: #c8d6ea;
-      border-bottom: 1px solid #c8d6ea;
+      background: #fff;
+      border-bottom: 2px solid #e8eef6;
+      box-shadow: 0 2px 12px rgba(26,75,181,0.07);
     }
 
     .stat {
-      background: #fff;
+      padding: 1.4rem 1rem;
       text-align: center;
-      padding: 1.1rem 1rem;
+      border-right: 1px solid #e8eef6;
+      transition: background 0.2s;
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: #f7faff; }
+
+    .stat-icon {
+      margin-bottom: 0.5rem;
     }
 
     .stat-icon svg {
-      width: 22px;
-      height: 22px;
+      width: 24px; height: 24px;
       stroke: #1A4BB5;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      margin-bottom: 0.4rem;
+      fill: none; stroke-width: 1.7;
+      stroke-linecap: round; stroke-linejoin: round;
     }
 
     .stat-value {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: #1A4BB5;
       line-height: 1;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .stat-label {
-      font-size: 0.72rem;
-      color: #5a7090;
+      font-size: 0.68rem;
+      color: #7a90b0;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    .section-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #5a7090;
-      margin-bottom: 1.2rem;
+      letter-spacing: 0.07em;
       font-weight: 600;
     }
 
-    /* REFERRAL FLOW - slightly bigger */
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1A4BB5;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a2b4a;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── REFERRAL FLOW ── */
+    .flow-wrap {
+      background: #fff;
+      border: 1px solid #e0eaf5;
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 10px rgba(26,75,181,0.05);
+    }
+
     .referral-flow {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 0;
       overflow-x: auto;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2rem;
     }
 
     .flow-step {
-      background: #fff;
-      border: 1px solid #dce8f5;
+      background: linear-gradient(135deg, #eef3fd, #ddeafa);
+      border: 1.5px solid #c2d5f5;
       border-radius: 10px;
       padding: 0.85rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #1a2b4a;
-      white-space: nowrap;
       text-align: center;
       flex-shrink: 0;
+      min-width: 100px;
     }
 
-    .flow-step span {
-      display: block;
-      font-size: 0.72rem;
+    .flow-step-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1a2b4a;
+    }
+
+    .flow-step-sub {
+      font-size: 0.68rem;
       color: #5a7090;
-      font-weight: 400;
       margin-top: 3px;
     }
 
     .flow-arrow {
-      color: #1A4BB5;
-      font-size: 1.2rem;
-      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
       flex-shrink: 0;
+    }
+
+    .flow-arrow svg {
+      width: 20px; height: 20px;
+      stroke: #1A4BB5;
+      fill: none; stroke-width: 2.2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── TRAVEL TIME STRIP ── */
+    .time-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .time-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #f0f5ff;
+      border: 1px solid #c8d9f5;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      color: #1A4BB5;
       font-weight: 600;
     }
 
-    /* CARDS - all 5 in one row */
+    .time-pill svg {
+      width: 13px; height: 13px;
+      stroke: #1A4BB5;
+      fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── CARDS ── */
     .cards {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
-      margin-bottom: 2rem;
     }
 
     .card {
       background: #fff;
-      border: 1px solid #dce8f5;
-      border-radius: 10px;
-      padding: 1.25rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      border: 1.5px solid #e0eaf5;
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1A4BB5, #1a6dd4);
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
     .card:hover {
-      box-shadow: 0 4px 16px rgba(26,75,181,0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26,75,181,0.13);
+      transform: translateY(-3px);
+      border-color: #b3ccf0;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #9ab2d4;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
     }
 
     .card-icon {
-      width: 40px;
-      height: 40px;
-      background: #e8f0fc;
-      border-radius: 8px;
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, #eef3fd, #dde8fa);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 0.85rem;
+      margin-bottom: 1rem;
+      border: 1px solid #c8d9f5;
     }
 
     .card-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 22px; height: 22px;
       stroke: #1A4BB5;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      fill: none; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
     }
 
     .card h3 {
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.86rem;
+      font-weight: 700;
       color: #1a2b4a;
-      margin-bottom: 0.4rem;
-      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
     }
 
     .card p {
-      font-size: 0.78rem;
-      color: #5a7090;
-      line-height: 1.6;
+      font-size: 0.75rem;
+      color: #6a82a0;
+      line-height: 1.65;
+      flex-grow: 1;
+      margin-bottom: 1rem;
     }
 
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #1A4BB5;
+      text-decoration: none;
+      margin-top: auto;
+      transition: gap 0.2s;
+    }
+
+    .card-cta svg {
+      width: 14px; height: 14px;
+      stroke: #1A4BB5;
+      fill: none; stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.2s;
+    }
+
+    .card:hover .card-cta svg { transform: translateX(3px); }
+
+    /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 1.25rem;
-      font-size: 0.75rem;
-      color: #8aa0bc;
-      border-top: 1px solid #dce8f5;
+      font-size: 0.72rem;
+      color: #9ab2ce;
+      border-top: 1px solid #e0eaf5;
       background: #fff;
-      margin-top: 2rem;
     }
+
+    footer strong { color: #5a7090; }
   </style>
 </head>
 <body>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-icon">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-        <circle cx="12" cy="9" r="2.5"/>
-      </svg>
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Rwanda Health GIS Platform
     </div>
-    <h1>Health Services Access Mapping Application</h1>
-    <p>A geospatial platform for analysing and visualising healthcare access across all levels of Rwanda's referral system — from community health posts to national referral hospitals.</p>
+    <h1>Health Services Access<br/>Mapping Application</h1>
+    <p>A geospatial intelligence platform that maps healthcare accessibility across every level of Rwanda's referral system — empowering planners with travel time, distance, and population coverage data.</p>
+    <div class="hero-divider"></div>
   </div>
 
-  <!-- STATS BAR -->
+  <!-- STATS -->
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
       </div>
       <div class="stat-value">5</div>
-      <div class="stat-label">Referral levels</div>
+      <div class="stat-label">Referral Levels</div>
     </div>
     <div class="stat">
       <div class="stat-icon">
         <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       </div>
       <div class="stat-value">30</div>
-      <div class="stat-label">Districts covered</div>
+      <div class="stat-label">Districts Covered</div>
     </div>
     <div class="stat">
       <div class="stat-icon">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <div class="stat-value">Time</div>
-      <div class="stat-label">Travel analysis</div>
+      <div class="stat-value">&le;2h</div>
+      <div class="stat-label">Max Referral Time</div>
     </div>
     <div class="stat">
       <div class="stat-icon">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <div class="stat-value">Pop.</div>
-      <div class="stat-label">Catchment data</div>
+      <div class="stat-value">14M+</div>
+      <div class="stat-label">Population Mapped</div>
     </div>
   </div>
 
-  <div class="section">
+  <!-- MAIN -->
+  <div class="content">
 
-    <!-- REFERRAL CHAIN -->
-    <div class="section-title">Rwanda's health referral system</div>
-    <div class="referral-flow">
-      <div class="flow-step">Community <span>Health Posts</span></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">Health <span>Centres</span></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">District <span>Hospitals</span></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">Provincial <span>Hospitals</span></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">Referral <span>Hospitals</span></div>
+    <!-- REFERRAL SYSTEM -->
+    <div class="section-label">How it works</div>
+    <div class="section-heading">Rwanda's Health Referral System</div>
+
+    <div class="flow-wrap">
+      <div class="referral-flow">
+        <div class="flow-step">
+          <div class="flow-step-title">Community</div>
+          <div class="flow-step-sub">Health Posts</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-title">Health</div>
+          <div class="flow-step-sub">Centres</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-title">District</div>
+          <div class="flow-step-sub">Hospitals</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-title">Provincial</div>
+          <div class="flow-step-sub">Hospitals</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-title">Referral</div>
+          <div class="flow-step-sub">Hospitals</div>
+        </div>
+      </div>
+
+      <!-- TRAVEL TIME PILLS -->
+      <div class="time-strip">
+        <div class="time-pill">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Health Centre → District: ≤ 30 min
+        </div>
+        <div class="time-pill">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          District → Provincial: ≤ 1 hour
+        </div>
+        <div class="time-pill">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Provincial → Referral: ≤ 2 hours
+        </div>
+      </div>
     </div>
 
-    <!-- FEATURE CARDS - all 5 in one row -->
-    <div class="section-title">Explore access layers</div>
+    <!-- CARDS -->
+    <div class="section-label">Explore the dashboards</div>
+    <div class="section-heading">Select an Access Level to View</div>
+
     <div class="cards">
 
-      <div class="card">
+      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/97ea5d54700a42c8b16e8645845474bc" target="_blank">
+        <div class="card-num">Level 01</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
-        <h3>Primary healthcare access</h3>
-        <p>Community-level access to health posts and health centres across Rwanda.</p>
-      </div>
+        <h3>Primary Healthcare Access</h3>
+        <p>Community-level access to health posts and health centres across Rwanda's sectors.</p>
+        <span class="card-cta">
+          Open Dashboard
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/626b6461ae4948788b2c6b9b9231ecec" target="_blank">
+        <div class="card-num">Level 02</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8v4h8V3z"/><path d="M12 12v4m-2-2h4"/></svg>
         </div>
-        <h3>Health centre → District hospital</h3>
+        <h3>Health Centre → District Hospital</h3>
         <p>Travel time and distance for referrals from health centres to district hospitals.</p>
-      </div>
+        <span class="card-cta">
+          Open Dashboard
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/b874415d6ebb4bf4b428189d5fef85be" target="_blank">
+        <div class="card-num">Level 03</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>District → Provincial access</h3>
-        <p>Connectivity and access mapping between district and provincial hospitals.</p>
-      </div>
+        <h3>District → Provincial Access</h3>
+        <p>Connectivity and access mapping between district and provincial level hospitals.</p>
+        <span class="card-cta">
+          Open Dashboard
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/bd50d196e7bb4e4ea474fff04c44303e" target="_blank">
+        <div class="card-num">Level 04</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
         </div>
-        <h3>Provincial → Referral access</h3>
+        <h3>Provincial → Referral Access</h3>
         <p>Pathways from provincial hospitals to national and specialist referral centres.</p>
-      </div>
+        <span class="card-cta">
+          Open Dashboard
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://gh.space.gov.rw/portal/apps/dashboards/7bcfb3bfcd114ef487fc3cb0c86204ad" target="_blank">
+        <div class="card-num">Level 05</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3>Sector to Referral access</h3>
-        <p>Top-tier specialist and tertiary care access coverage and geographic reach.</p>
-      </div>
+        <h3>Sector to Referral Access</h3>
+        <p>Top-tier specialist and tertiary care access coverage and geographic reach nationwide.</p>
+        <span class="card-cta">
+          Open Dashboard
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
     </div>
 
   </div>
 
   <footer>
-    Health Services Access Mapping Application &nbsp;|&nbsp; Ministry of Health, Rwanda
+    <strong>Health Services Access Mapping Application</strong> &nbsp;|&nbsp; Ministry of Health, Rwanda &nbsp;|&nbsp; Rwanda Space Agency
   </footer>
 
 </body>
